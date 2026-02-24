@@ -4,9 +4,9 @@ export default function Dashboard() {
   const location = useLocation();
   const user = location.state?.user;
 
-  if (!user) {
-    return <Navigate to="/" replace />;
-  }
+//   if (!user) {
+//     return <Navigate to="/" replace />;
+//   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
