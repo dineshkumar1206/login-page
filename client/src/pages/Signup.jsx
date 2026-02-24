@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -10,7 +10,7 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
@@ -26,15 +26,15 @@ export default function Signup() {
       });
 
       setLoading(false);
-      alert("Account Created Successfully!");
+      // alert("Account Created Successfully!");
+      navigate('/')
+
     } catch (err) {
       console.log(err)
       setLoading(false);
       setError("Registration failed");
     }
   };
-
-// navigate("/");
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">

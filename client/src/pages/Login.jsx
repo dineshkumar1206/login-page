@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useNavigate } from "react";
 import axios from "axios";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +25,11 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       setLoading(false);
       alert("Login Successful!");
+
+      const user = res.data.user;
+      navigate("/dashboard", {
+      state: { user }, // ✅ pass user data
+    });
     } catch (err) {
       console.log(err)
       setLoading(false);
