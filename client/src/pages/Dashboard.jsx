@@ -4,7 +4,6 @@ export default function Dashboard() {
   const location = useLocation();
   const user = location.state?.user;
 
-  // If user directly opens dashboard without login
   if (!user) {
     return <Navigate to="/" replace />;
   }
@@ -20,9 +19,9 @@ export default function Dashboard() {
           Hello, <span className="text-white font-medium">{user.name}</span>
         </p>
 
-        <p className="text-sm text-gray-400 mt-3">
-          You have successfully logged in.
-        </p>
+        {/* <p className="text-sm text-gray-400 mt-3">
+          Email: {user.email}
+        </p> */}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
-import { useState,useNavigate } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // ✅ correct import
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -9,7 +9,8 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,21 +18,25 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await axios.post("https://login-page-xxvf.onrender.com/api/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://login-page-xxvf.onrender.com/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+
+      const user = res.data.user;
 
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(user)); 
+
       setLoading(false);
       alert("Login Successful!");
 
-      const user = res.data.user;
-      navigate("/dashboard", {
-      state: { user }, // ✅ pass user data
-    });
+      navigate("/dashboard"); // ✅ clean navigation
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setLoading(false);
       setError("Invalid email or password");
     }
