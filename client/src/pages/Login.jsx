@@ -25,6 +25,7 @@ export default function Login() {
       setLoading(false);
       alert("Login Successful!");
     } catch (err) {
+      console.log(err)
       setLoading(false);
       setError("Invalid email or password");
     }

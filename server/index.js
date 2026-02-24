@@ -8,11 +8,14 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+import cors from "cors";
+
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://login-page-wheat-three.vercel.app/"
+    "https://login-page-wheat-three.vercel.app"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 mongoose.connect(process.env.MONGO_URI)

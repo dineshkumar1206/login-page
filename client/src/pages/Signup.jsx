@@ -28,6 +28,7 @@ export default function Signup() {
       setLoading(false);
       alert("Account Created Successfully!");
     } catch (err) {
+      console.log(err)
       setLoading(false);
       setError("Registration failed");
     }
