@@ -7,9 +7,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json());
-import cors from "cors";
-
+// 🔥 CORS MUST COME BEFORE ROUTES
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -18,6 +16,9 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
+app.use(express.json());
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
