@@ -19,7 +19,7 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      await axios.post("https://login-backend-418n.onrender.com/api/auth/register", {
+      await axios.post("https://login-page-xxvf.onrender.com/api/auth/register", {
         name,
         email,
         password,
