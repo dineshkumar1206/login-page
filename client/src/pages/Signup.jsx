@@ -10,6 +10,8 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  // const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +19,7 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/api/auth/register", {
+      await axios.post("https://login-backend-418n.onrender.com/api/auth/register", {
         name,
         email,
         password,
@@ -30,6 +32,8 @@ export default function Signup() {
       setError("Registration failed");
     }
   };
+
+// navigate("/");
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">

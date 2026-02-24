@@ -6,11 +6,17 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-app.use(express.json());
-app.use(cors());
 
+app.use(express.json());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://login-page-wheat-three.vercel.app/"
+  ],
+  credentials: true
+}));
 mongoose.connect(process.env.MONGO_URI)
- .then(() => console.log("MongoDB Connected"))
+  .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
 app.use("/api/auth", require("./routes/auth"));
