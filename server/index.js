@@ -7,13 +7,9 @@ dotenv.config();
 
 const app = express();
 
-// 🔥 CORS MUST COME BEFORE ROUTES
+// ✅ CORS MUST BE FIRST
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://login-page-wheat-three.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: "https://login-page-wheat-three.vercel.app",
   credentials: true
 }));
 
@@ -25,4 +21,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use("/api/auth", require("./routes/auth"));
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server running");
+});
